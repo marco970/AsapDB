@@ -18,8 +18,8 @@ public class UpdateTrans extends TransBlank {
     public UpdateTrans(String hibernateConf, Object bean, String fieldName, String newValue) {
         super(hibernateConf, bean, fieldName);
         this.newValue = newValue;
-        String PZ = "PZ/0000005311";
-        String ZZ = "ZZ/PLI0006565";
+        String PZ = "PZ/0000005312";
+        String ZZ = "ZZ/PLI0003459";
         int id = 9;
         String update = "update Lista el set el.PZ=:PZ where el.ZZ=:ZZ";
         

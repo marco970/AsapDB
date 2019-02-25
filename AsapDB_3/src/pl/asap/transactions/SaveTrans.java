@@ -15,13 +15,13 @@ public class SaveTrans extends TransBlank {
 			method = bean.getClass().getMethod(methodName, String.class);
 		} catch (NoSuchMethodException | SecurityException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		try {
 			method.invoke(bean, value);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+                    // TODO Auto-generated catch block
+
 		}
 			
 		exeTransaction();

@@ -38,7 +38,7 @@ public DBConnect()        {
 	
 	//mysqld_usbwv8.exe
 	
-	
+	/*
 	frame = new JFrame("siema");
 	frame.setSize(790, 100);
 	JPanel pane = new JPanel();                          
@@ -47,6 +47,7 @@ public DBConnect()        {
 	frame.add(pane);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setVisible(false);
+        */
 	
 	for (int i = 0; i < 4; i++) {
 		try {

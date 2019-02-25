@@ -6,9 +6,9 @@ import org.hibernate.cfg.Configuration;
 
 public abstract class TransBlank {
 	
-		private SessionFactory factory;
-		private Session session;
-		private Object bean;
+		final SessionFactory factory;
+		final Session session;
+		private final Object bean;
 		
 	
 	public TransBlank(String hibernateConf, Object bean, String fieldName)		{

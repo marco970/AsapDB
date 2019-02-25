@@ -20,13 +20,13 @@ public class SaveRow {
 		// pobranie sesji
 		Session session = factory.getCurrentSession();
 		Lista lista = new Lista();
-		lista.setZZ("ZZ/PLI0003459");
+		lista.setZZ("ZZ/PLI0003499");
 		session.beginTransaction();
 		// zapisanie pracownika
 		session.save(lista);
-		// zakoñczenie transakcji
+		// zakoï¿½czenie transakcji
 		session.getTransaction().commit();
-		// zamkniêcie obiektu SessionFactory
+		// zamkniï¿½cie obiektu SessionFactory
 		factory.close();
 
 	}

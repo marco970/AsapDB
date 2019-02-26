@@ -11,7 +11,7 @@ public class TestStarter {
 		Lista lista = new Lista();
 		
             //new SaveTrans("hibernate.cfg.xml", lista, "ZZ", "ZZ/PLI0006565");
-            UpdateTrans updateTrans = new UpdateTrans("hibernate.cfg.xml", lista, "ZZ", "PZ/0000005311");
+            UpdateTrans updateTrans = new UpdateTrans("hibernate.cfg.xml", lista, "WP", "WP/PLK0004325", "ZZ/PLI0006565");
 
 	}
 

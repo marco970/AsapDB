@@ -14,19 +14,28 @@ import org.hibernate.query.Query;
 public class UpdateTrans extends TransBlank {
     
     private final String newValue;
+    private String fieldName;
 
-    public UpdateTrans(String hibernateConf, Object bean, String fieldName, String newValue) {
-        super(hibernateConf, bean, fieldName);
+    public UpdateTrans(String hibernateConf, Object bean, String fieldName, String newValue, String ZZ) {
+        super(hibernateConf, bean);
         this.newValue = newValue;
-        String PZ = "PZ/0000005312";
-        String ZZ = "ZZ/PLI0003459";
-        int id = 9;
-        String update = "update Lista el set el.PZ=:PZ where el.ZZ=:ZZ";
+        //String val = fieldName;
+        //String PZ = newValue;
+        //String ZZ = "ZZ/PLI0003457";
+        //int id = 9;
+        String str = bean.toString();
+        int i = str.indexOf("@");
+        System.out.println("***"+str.substring(0, i));
+        
+        String update = "update "+str.substring(0, i)+" set "+ fieldName+"=:"+fieldName+ " where ZZ=:ZZ";
+        System.out.println("**"+update);
+
+        //String update = "update Lista set PZ=:PZ where ZZ=:ZZ";
         
         session.beginTransaction();
-        Query query = session.createQuery(update);
+        Query<?> query = session.createQuery(update);
         query.setParameter("ZZ", ZZ);
-        query.setParameter("PZ", PZ);
+        query.setParameter(fieldName, newValue);
         query.executeUpdate();
         session.getTransaction().commit();
         factory.close();

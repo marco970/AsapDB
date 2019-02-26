@@ -11,7 +11,7 @@ public abstract class TransBlank {
 		private final Object bean;
 		
 	
-	public TransBlank(String hibernateConf, Object bean, String fieldName)		{
+	public TransBlank(String hibernateConf, Object bean)		{
 
 		Configuration conf = new Configuration();
 		conf.configure(hibernateConf);

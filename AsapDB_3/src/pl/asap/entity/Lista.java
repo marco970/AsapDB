@@ -156,9 +156,7 @@ public class Lista {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
+
 		return array;
 	}
 

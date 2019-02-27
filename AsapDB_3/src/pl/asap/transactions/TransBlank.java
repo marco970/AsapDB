@@ -28,12 +28,5 @@ public abstract class TransBlank {
 		session = factory.getCurrentSession();
 
 	}
-	public void exeTransaction()	{
-		session.beginTransaction();
-		session.save(bean);
-		session.getTransaction().commit();
-		factory.close();
-		
-	}
 
 }

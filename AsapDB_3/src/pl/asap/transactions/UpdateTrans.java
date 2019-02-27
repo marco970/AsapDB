@@ -25,7 +25,7 @@ public class UpdateTrans extends TransBlank {
         //int id = 9;
         String str = bean.toString();
         int i = str.indexOf("@");
-        System.out.println("***"+str.substring(0, i));
+        //System.out.println("***"+str.substring(0, i));
         
         String update = "update "+str.substring(0, i)+" set "+ fieldName+"=:"+fieldName+ " where id_postepowanie=:id";
         System.out.println("**"+update);

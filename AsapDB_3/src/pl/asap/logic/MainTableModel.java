@@ -15,20 +15,12 @@ public class MainTableModel extends AbstractTableModel {
 	private static String[] nazwyKolumn = {"ZZ", "PZ", "WP", "DK", "Status", 
 			"Przemiot Zakupu", "Dostawca", "Nazwa", "Tryb postępowania", "Spółka", 
 			"dsZZ", "dsPZ", "dsWP", "dsDK" };
-	/*
-	 * Walidacja
-	 */
-	//private boolean[] notNull = 
-	//private String[] ZZ = {"notNull"};
 
-	//private String current = "F:/aSapData/Current3.txt";
-	//private String current = "C:/Users/Lappo/git/AsapJava/aSapData/Current3.txt";
 	private String current = "Current4.txt";
-	//private String current = "C:/Users/marcin.kuciak/Documents/workIT_projects/doAsap/aSapData/Current3.txt";
 	
 	private Object[][] dane = null;
 	
-	public MainTableModel() 	{
+	public MainTableModel() 	{			//tu powinien być odczyt z bazy
 		try {
 			this.dane=readFile(current);
 		} catch (IOException e) {

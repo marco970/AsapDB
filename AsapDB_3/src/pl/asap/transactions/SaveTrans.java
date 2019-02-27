@@ -24,7 +24,10 @@ public class SaveTrans extends TransBlank {
 
 		}
 			
-		exeTransaction();
+		session.beginTransaction();
+		session.save(bean);
+		session.getTransaction().commit();
+		factory.close();
 		
 		
 	}

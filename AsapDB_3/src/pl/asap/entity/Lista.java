@@ -1,6 +1,7 @@
 package pl.asap.entity;
 
 import javax.persistence.*;
+import java.lang.reflect.*;
 
 
 
@@ -138,6 +139,27 @@ public class Lista {
 	}
 	public void setData_DK(String data_DK) {
 		this.data_DK = data_DK;
+	}
+	public Object[] getArray()	{
+		Class c = getClass();
+		Field[] fields = c.getDeclaredFields();
+		int length = fields.length;
+		Object[] array = new Object[length];
+		for (int i =0; i<= length -1; i++)	{
+			try {
+				array[i] = fields[i].get(this);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return array;
 	}
 
 }

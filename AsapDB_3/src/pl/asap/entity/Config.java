@@ -18,6 +18,7 @@ public class Config {
     	
     }
 
+
 	public String getHibernateXML() {
 		return hibernateXML;
 	}
@@ -25,5 +26,6 @@ public class Config {
 	public void setHibernateXML(String hibernateXML) {
 		this.hibernateXML = hibernateXML;
 	}
+
     
 }

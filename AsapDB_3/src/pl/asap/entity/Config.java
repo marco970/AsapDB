@@ -14,5 +14,8 @@ public class Config {
     private String hibernateXML = "hibernate.cfg.xml";
     
     //private Object bean = 
+    public Config()	{
+    	
+    }
     
 }

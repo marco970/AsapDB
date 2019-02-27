@@ -16,8 +16,8 @@ public class UpdateTrans extends TransBlank {
     private final String newValue;
     private String fieldName;
 
-    public UpdateTrans(String hibernateConf, Object bean, String fieldName, String newValue, String ZZ) {
-        super(hibernateConf, bean);
+    public UpdateTrans(Object bean, String fieldName, String newValue, int id) {
+        super(bean);
         this.newValue = newValue;
         //String val = fieldName;
         //String PZ = newValue;
@@ -27,14 +27,14 @@ public class UpdateTrans extends TransBlank {
         int i = str.indexOf("@");
         System.out.println("***"+str.substring(0, i));
         
-        String update = "update "+str.substring(0, i)+" set "+ fieldName+"=:"+fieldName+ " where ZZ=:ZZ";
+        String update = "update "+str.substring(0, i)+" set "+ fieldName+"=:"+fieldName+ " where id_postepowanie=:id";
         System.out.println("**"+update);
 
         //String update = "update Lista set PZ=:PZ where ZZ=:ZZ";
         
         session.beginTransaction();
         Query<?> query = session.createQuery(update);
-        query.setParameter("ZZ", ZZ);
+        query.setParameter("id", id);
         query.setParameter(fieldName, newValue);
         query.executeUpdate();
         session.getTransaction().commit();

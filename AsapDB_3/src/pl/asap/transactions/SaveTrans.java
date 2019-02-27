@@ -7,8 +7,8 @@ public class SaveTrans extends TransBlank {
 	
 	
 	
-	public SaveTrans (String hibernateConf, Object bean, String fieldName, String value)	{
-		super(hibernateConf, bean);
+	public SaveTrans (Object bean, String fieldName, String value)	{
+		super(bean);
 		Method method = null;
 		String methodName = "set"+fieldName;
 		try {

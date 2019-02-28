@@ -141,8 +141,10 @@ public class Lista {
 		this.data_DK = data_DK;
 	}
 	public Object[] getArray()	{
+		
 		Class c = getClass();
 		Field[] fields = c.getDeclaredFields();
+
 		int length = fields.length;
 		Object[] array = new Object[length];
 		for (int i =0; i<= length -1; i++)	{
@@ -158,5 +160,12 @@ public class Lista {
 		}
 		return array;
 	}
+	public int getLength()	{
+		Class c = getClass();
+		Field[] fields = c.getDeclaredFields();
+		return fields.length;
+		
+	}
+	
 
 }

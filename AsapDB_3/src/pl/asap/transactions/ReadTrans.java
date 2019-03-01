@@ -9,6 +9,7 @@ import pl.asap.entity.Lista;
 public class ReadTrans extends TransBlank{
 	
 	public Object[][] dane;
+	private Integer[] ids;
 	public int rowNr;
 
 	public ReadTrans(Object bean) {
@@ -29,16 +30,22 @@ public class ReadTrans extends TransBlank{
 		//System.out.println("kolumny i: "+i);
 		//System.out.println("wiersze j: "+j);
 		
-		dane = new Object[i-1][j-1];
+		dane = new Object[i-1][j];
+		ids = new Integer[j];
 		int k;
 		int l = 0;
 		for(Lista values: result) {
 			k = 0;
 			Object[] obj = values.getArray();
 			for (Object el: obj)	{
-				if (!(k==0 || l==0))	{
-				dane[k-1][l-1] = el;
-				//System.out.print(el+"-("+k+"|"+l+") ");
+				if (k==0 )	{
+					//System.out.println(k+"|"+l);
+					ids[l]=(Integer) el;
+					//System.out.println(ids[l]+"("+k+"|"+l+")");
+				}
+				if (!(k==0))	{
+				dane[k-1][l] = el;
+				//System.out.print(el+"("+k+"|"+l+") ");
 				}
 				k++;
 			}
@@ -47,19 +54,24 @@ public class ReadTrans extends TransBlank{
 		}
 		//System.out.println("kolumny m: "+dane.length);
 		//System.out.println("wiersze n: "+dane[0].length);
-		/*
-		for(int n = 0; n<=j-2; n++)	{
-			for (int m =0; m<=i-2; m++)	{
-				System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
+		
+		for(int n = 0; n<=j-1; n++)	{
+			
+			for (int m =0; m<=i-1; m++)	{
+				if (m==0)	System.out.print(ids[n]+"("+m+"|"+n+")  ");
+				//System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
 			}
-			System.out.println();
-		}	*/
+			//System.out.println();
+		}	
 	}
 	public Object[][] getMatrix()	{
 		return dane;
 	}
 	public int rowNr()	{
 		return dane[0].length;
+	}
+	public Integer[] getIDs()	{
+		return ids;
 	}
 	
 	/*public int getID(int rowNr)	{

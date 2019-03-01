@@ -9,6 +9,9 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+import pl.asap.entity.Lista;
+import pl.asap.transactions.ReadTrans;
+
 public class MainTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 1L;
@@ -20,6 +23,7 @@ public class MainTableModel extends AbstractTableModel {
 	private String current = "Current4.txt";
 	
 	private Object[][] dane = null;
+	private Integer[] ids;
 	
 			//tu powinien być odczyt z bazy
 
@@ -37,12 +41,21 @@ public class MainTableModel extends AbstractTableModel {
 	//private Object[][] dane = null;
 	
 	public MainTableModel() 	{
-
+		/*
 		try {
 			this.dane=readFile(current);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
+		
+		Lista lista = new Lista();
+		ReadTrans readDB = new ReadTrans(lista);
+		this.dane=readDB.getMatrix();
+		this.ids = readDB.getIDs();
+		System.out.println("kolumny m: "+dane.length);
+		System.out.println("wiersze n: "+dane[0].length);
+				
 	}
 	//----------metody--
 
@@ -103,7 +116,8 @@ public class MainTableModel extends AbstractTableModel {
 
 	@Override	//===================
 	public Object getValueAt(int arg0, int arg1) {
-		if (arg0<=getRowCount() && arg1<=getColumnCount()) return dane[arg0][arg1];
+
+		if (arg1<=getRowCount() && arg0<=getColumnCount()) return dane[arg1][arg0];
 		else return "";
 	}
 	

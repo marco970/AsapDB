@@ -18,9 +18,12 @@ import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import pl.asap.entity.Lista;
+import pl.asap.transactions.ReadTrans;
 
 	
 public class EkranGlowny implements ActionListener {
@@ -51,11 +54,13 @@ public class EkranGlowny implements ActionListener {
 	TableRowSorter<MainTableModel> sorter;
 	RowFilter<Object, Object> filter;
 	
-	private Lista entity;
+	DataModel dataModel;
 	
-	public EkranGlowny(Lista lista)	{
+	
+	
+	public EkranGlowny(AbstractTableModel dataModel)	{
 		
-		this.entity = lista;
+		this.dataModel = (DataModel) dataModel;
 
 		SwingUtilities.invokeLater(new Runnable() {
 		      @Override
@@ -66,6 +71,8 @@ public class EkranGlowny implements ActionListener {
 	}
 	
 	public void createGui(String tytul)	{
+		
+		
 		MainTableModel dane = new MainTableModel();
 		data = dane;
 		
@@ -77,7 +84,7 @@ public class EkranGlowny implements ActionListener {
 				if (n==0)	{	
 				//System.out.print("ids-"+ids[m]+"("+m+"|"+n+")  ");
 				}
-				System.out.print(data.getMatrix()[m][n]+"-("+m+"|"+n+") ");
+				//System.out.print(data.getMatrix()[m][n]+"-("+m+"|"+n+") ");
 			}
 			//System.out.println();
 		}	
@@ -86,7 +93,7 @@ public class EkranGlowny implements ActionListener {
 		height=	dane.getRowCount()*12+200;	
 		eg.setSize(width, height);
 		
-		lista = new JTable(dane);
+		lista = new JTable(dataModel);
 		//sortowanie i filtrowanie
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
 		sorter = new TableRowSorter<MainTableModel>(dane);

@@ -46,7 +46,13 @@ public class ReadTrans extends TransBlank{
 				}
 				if (l>0)	{
 				//System.out.println(k+"|"+l);
-				dane[k][l-1] = el;
+				if (el==null)	{
+					dane[k][l-1]=" ";
+				}
+				else {
+					dane[k][l-1] = el;
+				}
+				
 				//System.out.print(el+"-("+k+"|"+l+") ");
 				}
 				l++;

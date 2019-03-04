@@ -25,43 +25,45 @@ public class ReadTrans extends TransBlank{
 		session.getTransaction().commit();
 		factory.close();
 		
-		int i = result.get(0).getLength();	//kolumny
-		int j = result.size();	//wiersze
-		//System.out.println("kolumny i: "+i);
-		//System.out.println("wiersze j: "+j);
+		int j = result.get(0).getLength();	//kolumny -> wiersze
+		int i = result.size();	//wiersze -> kolumny
+		//System.out.println("kolumny -> wiersze(ile result na liście) i: "+i);
+		//System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
 		
-		dane = new Object[i-1][j];
-		ids = new Integer[j];
-		int k;
-		int l = 0;
-		for(Lista values: result) {
-			k = 0;
+		dane = new Object[i][j]; //7,14
+		ids = new Integer[j];	//14
+		int l;
+		int k = 0;
+		for(Lista values: result) { //resultów jest 7 (wiersze)
+			l = 0;
 			Object[] obj = values.getArray();
-			for (Object el: obj)	{
-				if (k==0 )	{
-					//System.out.println(k+"|"+l);
-					ids[l]=(Integer) el;
-					//System.out.println(ids[l]+"("+k+"|"+l+")");
+			//System.out.println("długość resultu "+k+" wynosi: "+obj.length);
+			for (Object el: obj)	{ //iteracja po jednym resulcie (kolumny)
+				if (l==0 )	{
+					//System.out.println(k+"|"+l); 
+					ids[k]=(Integer) el;
+					System.out.println(ids[k]+"*("+k+"|"+l+")");
 				}
-				if (!(k==0))	{
-				dane[k-1][l] = el;
-				//System.out.print(el+"("+k+"|"+l+") ");
+				if (l>0)	{
+				//System.out.println(k+"|"+l);
+				dane[k][l-1] = el;
+				System.out.print(el+"-("+k+"|"+l+") ");
 				}
-				k++;
+				l++;
 			}
-			l++;
-			//System.out.println();
+			k++;
+			System.out.println("///");
 		}
 		//System.out.println("kolumny m: "+dane.length);
 		//System.out.println("wiersze n: "+dane[0].length);
 		
-		for(int n = 0; n<=j-1; n++)	{
+		for(int m = 0; m<=i-1; m++)	{
 			
-			for (int m =0; m<=i-1; m++)	{
-				if (m==0)	System.out.print(ids[n]+"("+m+"|"+n+")  ");
-				//System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
+			for (int n =0; n<=j-1; n++)	{
+				if (n==0)	System.out.print("ids-"+ids[m]+"("+m+"|"+n+")  ");
+				System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
 			}
-			//System.out.println();
+			System.out.println();
 		}	
 	}
 	public Object[][] getMatrix()	{

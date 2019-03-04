@@ -23,6 +23,7 @@ public class MainTableModel extends AbstractTableModel {
 	private String current = "Current4.txt";
 	
 	private Object[][] dane = null;
+	private Object[][] adane = null;
 	private Integer[] ids;
 	
 			//tu powinien być odczyt z bazy
@@ -41,20 +42,39 @@ public class MainTableModel extends AbstractTableModel {
 	//private Object[][] dane = null;
 	
 	public MainTableModel() 	{
-		/*
+		
+		
 		try {
-			this.dane=readFile(current);
+			this.adane=readFile(current);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+		
+		
 		
 		Lista lista = new Lista();
 		ReadTrans readDB = new ReadTrans(lista);
+		//this.dane=adane;
 		this.dane=readDB.getMatrix();
 		this.ids = readDB.getIDs();
-		System.out.println("kolumny m: "+dane.length);
-		System.out.println("wiersze n: "+dane[0].length);
+		System.out.println("wiersze n: "+dane.length);
+		System.out.println("kolumny m: "+dane[0].length);
+		System.out.println("kolumny m': "+nazwyKolumn.length);
+		
+		int i = dane.length;
+		int j = dane[0].length;
+		
+		for(int m = 0; m<=i-1; m++)	{
+					
+			for (int n =0; n<=j-1; n++)	{
+				if (n==0)	{							
+					//System.out.print("ids-"+ids[m]+"("+m+"|"+n+")  ");
+				}
+					System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
+			}
+			System.out.println();
+		}	
+	
 				
 	}
 	//----------metody--
@@ -106,7 +126,7 @@ public class MainTableModel extends AbstractTableModel {
 	
 	@Override
 	public int getColumnCount() {
-		return nazwyKolumn.length;
+		return dane[0].length;
 	}
 
 	@Override
@@ -115,9 +135,9 @@ public class MainTableModel extends AbstractTableModel {
 	}
 
 	@Override	//===================
-	public Object getValueAt(int arg0, int arg1) {
+	public Object getValueAt(int row, int col) {
 
-		if (arg1<=getRowCount() && arg0<=getColumnCount()) return dane[arg1][arg0];
+		if (row<=getRowCount() && col<=getColumnCount()) return dane[row][col];
 		else return "";
 	}
 	

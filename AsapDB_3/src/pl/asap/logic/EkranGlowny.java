@@ -20,6 +20,8 @@ import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableRowSorter;
 
+import pl.asap.entity.Lista;
+
 	
 public class EkranGlowny implements ActionListener {
 	
@@ -49,7 +51,11 @@ public class EkranGlowny implements ActionListener {
 	TableRowSorter<MainTableModel> sorter;
 	RowFilter<Object, Object> filter;
 	
-	public EkranGlowny()	{
+	private Lista entity;
+	
+	public EkranGlowny(Lista lista)	{
+		
+		this.entity = lista;
 
 		SwingUtilities.invokeLater(new Runnable() {
 		      @Override
@@ -62,6 +68,19 @@ public class EkranGlowny implements ActionListener {
 	public void createGui(String tytul)	{
 		MainTableModel dane = new MainTableModel();
 		data = dane;
+		
+		int i = data.getRowCount();
+		int j = data.getColumnCount();
+		
+		for(int m = 0; m<=i-1; m++)	{
+			for (int n =0; n<=j-1; n++)	{
+				if (n==0)	{	
+				//System.out.print("ids-"+ids[m]+"("+m+"|"+n+")  ");
+				}
+				System.out.print(data.getMatrix()[m][n]+"-("+m+"|"+n+") ");
+			}
+			//System.out.println();
+		}	
 		eg = new JFrame("ASap - Lista Postępowań");
 		width = dane.getColumnCount()*100;
 		height=	dane.getRowCount()*12+200;	

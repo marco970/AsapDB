@@ -23,18 +23,22 @@ public class DBConnect {
 	static JLabel lab;
                 //private static String driverName = "com.mysql.jdbc.Driver";
 	String defaultPath;
+	Process proc;
 
 public DBConnect()        {
 	
 	defaultPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	System.out.println(defaultPath);
+	//System.out.println(defaultPath);
 	
-	try {
-		Process proc = Runtime.getRuntime().exec(defaultPath+"\\000_rough\\mysql\\bin\\mysqld_usbwv8.exe");
-		//Process process = new ProcessBuilder("U:\\git\\AukcjaDo\\1\\AukcjaDo1\\000_rough\\usbwebserver.exe").start();
-	} catch (IOException e1) {
-		e1.printStackTrace();
+	if (processCheck("mysqld_usbwv8.exe")==false) {
+		try {
+			proc = Runtime.getRuntime().exec(defaultPath + "\\000_rough\\mysql\\bin\\mysqld_usbwv8.exe");
+			//Process process = new ProcessBuilder("U:\\git\\AukcjaDo\\1\\AukcjaDo1\\000_rough\\usbwebserver.exe").start();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} 
 	}
+	
 	
 	//mysqld_usbwv8.exe
 	
@@ -79,9 +83,12 @@ public DBConnect()        {
 		}
 	});
 	}
-	
+	public Process getProcess()	{
+		return proc;
+	}
 	public boolean processCheck(String processName)	{
-		String findProcess = "mysqld_usbwv8.exe";
+		String findProcess = processName;
+		//String findProcess = "mysqld_usbwv8.exe";
 		String filenameFilter = "/nh /fi \"Imagename eq "+findProcess+"\"";
 		String tasksCmd = System.getenv("windir") +"/system32/tasklist.exe "+filenameFilter;
 

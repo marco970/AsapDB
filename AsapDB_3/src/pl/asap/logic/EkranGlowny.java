@@ -3,6 +3,8 @@ package pl.asap.logic;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -22,6 +24,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import pl.asap.DB.DBConnect;
 import pl.asap.entity.Lista;
 import pl.asap.transactions.ReadTrans;
 
@@ -54,13 +57,20 @@ public class EkranGlowny implements ActionListener {
 	TableRowSorter<MainTableModel> sorter;
 	RowFilter<Object, Object> filter;
 	
-	DataModel dataModel;
+	AbstractTableModel dataModel;
+	DBConnect dbConnect;
 	
-	
+	private class CloseListener implements ActionListener{
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        
+	        System.exit(0);
+	    }
+	}
 	
 	public EkranGlowny(AbstractTableModel dataModel)	{
 		
-		this.dataModel = (DataModel) dataModel;
+		this.dataModel = dataModel;
 
 		SwingUtilities.invokeLater(new Runnable() {
 		      @Override
@@ -70,8 +80,21 @@ public class EkranGlowny implements ActionListener {
 		    });
 	}
 	
-	public void createGui(String tytul)	{
+	public EkranGlowny(AbstractTableModel dataModel, DBConnect dbConnect) {
+		this.dataModel = dataModel;
+		this.dbConnect = dbConnect;
+
+		SwingUtilities.invokeLater(new Runnable() {
+		      @Override
+		      public void run() {
+		        createGui(tytul);
+		      }
+		    });
 		
+	
+	}
+	
+	public void createGui(String tytul)	{
 		
 		MainTableModel dane = new MainTableModel();
 		data = dane;
@@ -89,11 +112,13 @@ public class EkranGlowny implements ActionListener {
 			//System.out.println();
 		}	
 		eg = new JFrame("ASap - Lista Postępowań");
+		
 		width = dane.getColumnCount()*100;
 		height=	dane.getRowCount()*12+200;	
 		eg.setSize(width, height);
 		
 		lista = new JTable(dataModel);
+		
 		//sortowanie i filtrowanie
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
 		sorter = new TableRowSorter<MainTableModel>(dane);
@@ -150,7 +175,20 @@ public class EkranGlowny implements ActionListener {
 
 		lista.setComponentPopupMenu(pc); //tu wrzucamy dynamiczny obiekt
 
-		eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		eg.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//eg.addActionListner(new CloseListener());
+		eg.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent event) {
+	        	
+	        	if (dbConnect.getProcess()!=null) {
+					dbConnect.getProcess().destroy();
+				}
+				eg.dispose();
+	            System.exit(0);
+	        }
+	    });
 		eg.setVisible(true);
 
 	}
@@ -214,6 +252,7 @@ public class EkranGlowny implements ActionListener {
 		//System.out.println(u);
 
 		if (u.equals(start[3]))	{
+			dbConnect.getProcess().destroy();
 			System.exit(0);
 		}
 		//ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?

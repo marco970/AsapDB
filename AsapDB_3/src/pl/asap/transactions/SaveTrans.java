@@ -14,8 +14,6 @@ public class SaveTrans extends TransBlank {
 		try {
 			method = bean.getClass().getMethod(methodName, String.class);
 		} catch (NoSuchMethodException | SecurityException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 		}
 		try {
 			method.invoke(bean, value);

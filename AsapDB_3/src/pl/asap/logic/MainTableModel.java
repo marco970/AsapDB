@@ -57,6 +57,8 @@ public class MainTableModel extends AbstractTableModel {
 		//this.dane=adane;
 		this.dane=readDB.getMatrix();
 		this.ids = readDB.getIDs();
+		
+		/*
 		System.out.println("wiersze n: "+dane.length);
 		System.out.println("kolumny m: "+dane[0].length);
 		System.out.println("kolumny m': "+nazwyKolumn.length);
@@ -74,6 +76,7 @@ public class MainTableModel extends AbstractTableModel {
 			}
 			System.out.println();
 		}	
+		*/
 	
 				
 	}
@@ -86,10 +89,8 @@ public class MainTableModel extends AbstractTableModel {
 		return dane;
 	}
 	public Object[] getRowData(int i)	{
-		return dane[i];
-		
+		return dane[i];		
 	}
-
 	public String[] getColumns()	{
 		return nazwyKolumn ;
 	}
@@ -118,12 +119,9 @@ public class MainTableModel extends AbstractTableModel {
 			if(nazwyKolumn[i].equals(ColName))	{
 				j=i;
 			}
-
 		}
-		return j;
-		
+		return j;	
 	}
-	
 	@Override
 	public int getColumnCount() {
 		return dane[0].length;
@@ -134,13 +132,13 @@ public class MainTableModel extends AbstractTableModel {
 		return dane.length;
 	}
 
-	@Override	//===================
+	@Override	
 	public Object getValueAt(int row, int col) {
 
 		if (row<=getRowCount() && col<=getColumnCount()) return dane[row][col];
 		else return "";
 	}
-	
+	//----------------------------------------------------------
 	public Object[][] readFile(String filePath) throws IOException {
 		  FileReader fileReader = new FileReader(filePath);
 		  BufferedReader bufferedReader = new BufferedReader(fileReader);

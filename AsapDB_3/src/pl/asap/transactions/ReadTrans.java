@@ -58,7 +58,7 @@ public class ReadTrans extends TransBlank{
 				l++;
 			}
 			k++;
-			//System.out.println("///");
+			System.out.println("///");
 		}
 		//System.out.println("kolumny m: "+dane.length);
 		//System.out.println("wiersze n: "+dane[0].length);

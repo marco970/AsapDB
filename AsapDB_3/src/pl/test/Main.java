@@ -16,7 +16,7 @@ public class Main {
 		//System.out.println(values.length);
 		
 		DBConnect dbConnect = new DBConnect();
-		//Lista lista = new Lista();
+		Lista lista = new Lista();
 		//Object[] pola = lista.getArray();
 		//for (Object el: pola)	{
 			//System.out.println(" main el "+el);
@@ -28,10 +28,10 @@ public class Main {
 		
 		
 		
-		//ReadTrans readTrans = new ReadTrans(lista);
-		MainTableModel mtm = new MainTableModel();
+		ReadTrans readTrans = new ReadTrans(lista);
+		//MainTableModel mtm = new MainTableModel();
 		//DataModel dataModel = new DataModel(readTrans);
-		EkranGlowny eg = new EkranGlowny(mtm, dbConnect);
+		//EkranGlowny eg = new EkranGlowny(mtm, dbConnect);
 		//EkranGlowny eg = new EkranGlowny(dataModel);
 		
 		

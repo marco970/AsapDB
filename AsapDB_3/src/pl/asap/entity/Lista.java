@@ -176,6 +176,29 @@ public class Lista {
 		}
 		return array;
 	}
+	
+	
+public Object[] getRow()	{
+		
+		Class c = getClass();
+		Field[] fields = c.getDeclaredFields();
+
+		int length = fields.length;
+		Object[] array = new Object[length];
+		for (int i =0; i<= length -1; i++)	{
+			try {
+				array[i] = fields[i].get(this);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return array;
+}
+	
 	public int getLength()	{
 		Class c = getClass();
 		Field[] fields = c.getDeclaredFields();

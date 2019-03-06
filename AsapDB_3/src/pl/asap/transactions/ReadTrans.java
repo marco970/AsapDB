@@ -9,7 +9,7 @@ import pl.asap.entity.Lista;
 public class ReadTrans extends TransBlank{
 	
 	public Object[][] dane;
-	private Integer[] ids;
+	private Object[] ids;
 	public int rowNr;
 
 	public ReadTrans(Object bean) {
@@ -31,7 +31,7 @@ public class ReadTrans extends TransBlank{
 		System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
 		
 		dane = new Object[i][j]; //7,14
-		ids = new Integer[j];	//14
+		ids = new Object[j];	//14
 		int l;
 		int k = 0;
 		for(Lista values: result) { //resultów jest 7 (wiersze)
@@ -41,7 +41,7 @@ public class ReadTrans extends TransBlank{
 			for (Object el: obj)	{ //iteracja po jednym resulcie (kolumny)
 				if (l==0 )	{
 					//System.out.println(k+"|"+l); 
-					ids[k]=(Integer) el;
+					ids[k]= el;					
 					//System.out.println(ids[k]+"*("+k+"|"+l+")");
 				}
 				if (l>0)	{
@@ -53,7 +53,7 @@ public class ReadTrans extends TransBlank{
 					dane[k][l-1] = el;
 				}
 				
-				//System.out.print(el+"-("+k+"|"+l+") ");
+				System.out.print(el+"-("+k+"|"+l+") ");
 				}
 				l++;
 			}
@@ -79,7 +79,7 @@ public class ReadTrans extends TransBlank{
 	public int rowNr()	{
 		return dane[0].length;
 	}
-	public Integer[] getIDs()	{
+	public Object[] getIDs()	{
 		return ids;
 	}
 	

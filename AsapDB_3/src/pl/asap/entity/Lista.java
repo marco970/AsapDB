@@ -146,15 +146,31 @@ public class Lista {
 		Field[] fields = c.getDeclaredFields();
 
 		int length = fields.length;
-		Object[] array = new Object[length];
-		for (int i =0; i<= length -1; i++)	{
+		Object[] array = new Object[length-1];
+		for (int i =0; i<= length -2; i++)	{
 			try {
-				array[i] = fields[i].get(this);
+				//System.out.println(" lista el "+fields[i].toString());
+				
+				String[] a = null;
+				if (i+1<= length -1) {
+					a = fields[i + 1].toString().split("[.]{1}");
+					int k = a.length;
+					array[i] = a[k-1];
+				}
+				
+				
+				//System.out.println(" lista el "+ k +" -- "+a[k-1]);
+				//String[] b = a[k-1].split("[.]{1}");
+				
+				//int l = b.length;
+				//System.out.println(" lista l "+ l);
+				
+				
+				
+				//System.out.println(" lista el "+a[k]+" * "+k);
+				//System.out.println(" lista el "+array[i].getClass());
+				//System.out.println(" lista el "+array[i]);
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

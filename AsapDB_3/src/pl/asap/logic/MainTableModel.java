@@ -24,7 +24,7 @@ public class MainTableModel extends AbstractTableModel {
 	
 	private Object[][] dane = null;
 	private Object[][] adane = null;
-	private Integer[] ids;
+	private Object[] ids;
 	
 			//tu powinien być odczyt z bazy
 

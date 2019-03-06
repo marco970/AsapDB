@@ -3,31 +3,55 @@ package pl.asap.transactions;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import pl.asap.entity.Lista;
+
 public class SaveTrans extends TransBlank {
 	
-	
-	
-	public SaveTrans (Object bean, String fieldName, String value)	{
+	private Method method = null;
+	//private Object[] array;
+	//private Lista bean;
+
+	public SaveTrans (Object bean)	{
 		super(bean);
-		Method method = null;
+		
+		//this.bean=(Lista) bean;
+	}
+	public void fieldLogic(String fieldName, String value)	{
 		String methodName = "set"+fieldName;
+		if(value==null || "".equals(value)) value = " ";
+		System.out.println(value +" * ");
+		System.out.println(bean.getClass().toString() +" ** ");
+		System.out.println(methodName +" *methodName " + String.class);
 		try {
 			method = bean.getClass().getMethod(methodName, String.class);
+			//System.out.println(method.toString() +" * ");
 		} catch (NoSuchMethodException | SecurityException e) {
 		}
 		try {
 			method.invoke(bean, value);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-
 		}
-			
+	}
+	public void saveField(String fieldName, String value)	{
+		System.out.println(value);
+		fieldLogic(fieldName, value);
 		session.beginTransaction();
 		session.save(bean);
 		session.getTransaction().commit();
 		factory.close();
-		
-		
 	}
-
+	public void saveRow(String[] values)	{
+		
+		int i=0;
+		for (Object el: array)	{
+			System.out.println(values[i] +" - "+i+" -- "+ el);
+			fieldLogic((String) el, values[i]);
+			
+			i++;
+		}
+		session.beginTransaction();
+		session.save(bean);
+		session.getTransaction().commit();
+		factory.close();
+	}
 }

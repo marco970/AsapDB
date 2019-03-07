@@ -19,12 +19,12 @@ public class SaveTrans extends TransBlank {
 	public void fieldLogic(String fieldName, String value)	{
 		String methodName = "set"+fieldName;
 		if(value==null || "".equals(value)) value = " ";
-		System.out.println(value +" * ");
-		System.out.println(bean.getClass().toString() +" ** ");
-		System.out.println(methodName +" *methodName " + String.class);
+		//System.out.println(value +" * ");
+		//System.out.println(bean.getClass().toString() +" ** ");
+		//System.out.println(methodName +" *methodName " + String.class);
 		try {
 			method = bean.getClass().getMethod(methodName, String.class);
-			//System.out.println(method.toString() +" * ");
+			System.out.println(method.toString() +" * ");
 		} catch (NoSuchMethodException | SecurityException e) {
 		}
 		try {
@@ -40,12 +40,12 @@ public class SaveTrans extends TransBlank {
 		session.getTransaction().commit();
 		factory.close();
 	}
-	public void saveRow(String[] values)	{
+	public void saveRow(Object[] values)	{
 		
 		int i=0;
 		for (Object el: array)	{
-			System.out.println(values[i] +" - "+i+" -- "+ el);
-			fieldLogic((String) el, values[i]);
+			System.out.println(values[i].toString() +" - "+i+" -- "+ el);
+			fieldLogic((String) el, values[i].toString());
 			
 			i++;
 		}

@@ -26,9 +26,11 @@ public abstract class TransBlank {
 		this.bean = bean;
 		//System.out.println(" super "+((Lista)bean).getClass());
 		array = ((Lista) bean).getArray();
+		/*
 		for (Object el:array)	{
 			//System.out.println(" super el "+el);
 		}
+		*/
 		
 		Class<? extends Object> beanClass = bean.getClass();
 		

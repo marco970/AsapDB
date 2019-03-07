@@ -27,8 +27,8 @@ public class ReadTrans extends TransBlank{
 		
 		int j = result.get(0).getLength();	//kolumny -> wiersze
 		int i = result.size();	//wiersze -> kolumny
-		System.out.println("kolumny -> wiersze(ile result na liście) i: "+i);
-		System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
+		//System.out.println("kolumny -> wiersze(ile result na liście) i: "+i);
+		//System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
 		
 		dane = new Object[i][j]; //7,14
 		ids = new Object[j];	//14
@@ -36,7 +36,7 @@ public class ReadTrans extends TransBlank{
 		int k = 0;
 		for(Lista values: result) { //resultów jest 7 (wiersze)
 			l = 0;
-			Object[] obj = values.getArray();
+			Object[] obj = values.getRow();
 			//System.out.println("długość resultu "+k+" wynosi: "+obj.length);
 			for (Object el: obj)	{ //iteracja po jednym resulcie (kolumny)
 				if (l==0 )	{
@@ -53,12 +53,12 @@ public class ReadTrans extends TransBlank{
 					dane[k][l-1] = el;
 				}
 				
-				System.out.print(el+"-("+k+"|"+l+") ");
+				//System.out.print(el+"-("+k+"|"+l+") ");
 				}
 				l++;
 			}
 			k++;
-			System.out.println("///");
+			//System.out.println("///");
 		}
 		//System.out.println("kolumny m: "+dane.length);
 		//System.out.println("wiersze n: "+dane[0].length);

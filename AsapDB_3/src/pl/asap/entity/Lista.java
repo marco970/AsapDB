@@ -150,23 +150,19 @@ public class Lista {
 		for (int i =0; i<= length -2; i++)	{
 			try {
 				//System.out.println(" lista el "+fields[i].toString());
-				
 				String[] a = null;
 				if (i+1<= length -1) {
 					a = fields[i + 1].toString().split("[.]{1}");
 					int k = a.length;
 					array[i] = a[k-1];
 				}
-				
-				
+
 				//System.out.println(" lista el "+ k +" -- "+a[k-1]);
 				//String[] b = a[k-1].split("[.]{1}");
 				
 				//int l = b.length;
 				//System.out.println(" lista l "+ l);
-				
-				
-				
+
 				//System.out.println(" lista el "+a[k]+" * "+k);
 				//System.out.println(" lista el "+array[i].getClass());
 				//System.out.println(" lista el "+array[i]);
@@ -176,7 +172,6 @@ public class Lista {
 		}
 		return array;
 	}
-	
 	
 public Object[] getRow()	{
 		

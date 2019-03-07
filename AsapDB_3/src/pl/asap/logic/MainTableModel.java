@@ -11,6 +11,7 @@ import javax.swing.table.AbstractTableModel;
 
 import pl.asap.entity.Lista;
 import pl.asap.transactions.ReadTrans;
+import pl.asap.transactions.SaveTrans;
 
 public class MainTableModel extends AbstractTableModel {
 	
@@ -25,6 +26,7 @@ public class MainTableModel extends AbstractTableModel {
 	private Object[][] dane = null;
 	private Object[][] adane = null;
 	private Object[] ids;
+	private Lista lista; //to jest klasa bean, jakbym zapomniał
 	
 			//tu powinien być odczyt z bazy
 
@@ -43,7 +45,7 @@ public class MainTableModel extends AbstractTableModel {
 	
 	public MainTableModel() 	{
 		
-		
+		//do wywalenia ale najpierw przepisać jednorazowo plik do BD - moze oddzielna klasa?
 		try {
 			this.adane=readFile(current);
 		} catch (IOException e) {
@@ -52,7 +54,7 @@ public class MainTableModel extends AbstractTableModel {
 		
 		
 		
-		Lista lista = new Lista();
+		lista = new Lista();
 		ReadTrans readDB = new ReadTrans(lista);
 		//this.dane=adane;
 		this.dane=readDB.getMatrix();
@@ -184,8 +186,11 @@ public class MainTableModel extends AbstractTableModel {
 			else 		daneUpd[i]=savedRow;
 		}
 		dane=daneUpd;
+		SaveTrans st = new SaveTrans(lista);
+		st.saveRow(savedRow);
 		fireTableRowsInserted(n-1, n-1);
 		fireTableDataChanged();
+
 	}
 	public void recordUpdate(Object[] savedRow, int rowNr) { //--zapis do DB
 		ArrayList<Object[]> rowList = new ArrayList<Object[]>();
@@ -203,7 +208,7 @@ public class MainTableModel extends AbstractTableModel {
 		dane=daneUpd;
 		fireTableRowsUpdated(rowNr, rowNr);
 		fireTableDataChanged();	
-		
+
 	}
 	public void cellUpdate(Object value, int rowNr, int kolNr)	{ //--zapis do DB
 		dane[rowNr][kolNr] = value;

@@ -22,16 +22,16 @@ public class Main {
 			//System.out.println(" main el "+el);
 		//}
 		
-		//SaveTrans st = new SaveTrans(lista);
+		SaveTrans st = new SaveTrans(lista);
 		//st.saveRow(values);
-		//st.saveField("ZZ", "ZZ/CPO0002244");
+		st.saveField("dsZZ", "07.03.2019");
 		
 		
 		
-		ReadTrans readTrans = new ReadTrans(lista);
-		//MainTableModel mtm = new MainTableModel();
+		//ReadTrans readTrans = new ReadTrans(lista);
+		MainTableModel mtm = new MainTableModel();
 		//DataModel dataModel = new DataModel(readTrans);
-		//EkranGlowny eg = new EkranGlowny(mtm, dbConnect);
+		EkranGlowny eg = new EkranGlowny(mtm, dbConnect);
 		//EkranGlowny eg = new EkranGlowny(dataModel);
 		
 		

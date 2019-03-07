@@ -257,7 +257,7 @@ public class EkranGlowny implements ActionListener {
 		}
 		//ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
 		if (u.equals(start[1]))	{
-			//new NewForm(data.getRowCount()+1, data);
+			new NewForm(data.getRowCount()+1, data);
 		}
 		if (u.equals(start[2])){
 			//System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());

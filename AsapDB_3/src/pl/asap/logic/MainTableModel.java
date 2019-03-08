@@ -186,7 +186,7 @@ public class MainTableModel extends AbstractTableModel {
 		dane=daneUpd;
 		SaveTrans st = new SaveTrans(lista);
 		st.saveRow(savedRow);
-		fireTableRowsInserted(n, n);
+		fireTableRowsInserted(n-1, n-1);
 		fireTableDataChanged();
 
 	}

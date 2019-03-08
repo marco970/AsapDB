@@ -43,16 +43,16 @@ public class Lista {
 	private String Spolka;
 	
 	@Column(name="data_ZZ")
-	private String data_ZZ;
+	private String dsZZ;
 	
 	@Column(name="data_PZ")
-	private String data_PZ;
+	private String dsPZ;
 	
 	@Column(name="data_WP")
-	private String data_WP;
+	private String dsWP;
 	
 	@Column(name="data_DK")
-	private String data_DK;
+	private String dsDK;
 	
 
 
@@ -116,29 +116,29 @@ public class Lista {
 	public void setSpolka(String spolka) {
 		Spolka = spolka;
 	}
-	public String getData_ZZ() {
-		return data_ZZ;
+	public String getsZZ() {
+		return dsZZ;
 	}
-	public void setData_ZZ(String data_ZZ) {
-		this.data_ZZ = data_ZZ;
+	public void setdsZZ(String dsZZ) {
+		this.dsZZ = dsZZ;
 	}
-	public String getData_PZ() {
-		return data_PZ;
+	public String getdsPZ() {
+		return dsPZ;
 	}
-	public void setData_PZ(String data_PZ) {
-		this.data_PZ = data_PZ;
+	public void setdsPZ(String dsPZ) {
+		this.dsPZ = dsPZ;
 	}
-	public String getData_WP() {
-		return data_WP;
+	public String getdsWP() {
+		return dsWP;
 	}
-	public void setData_WP(String data_WP) {
-		this.data_WP = data_WP;
+	public void setdsWP(String dsWP) {
+		this.dsWP = dsWP;
 	}
-	public String getData_DK() {
-		return data_DK;
+	public String getdsDK() {
+		return dsDK;
 	}
-	public void setData_DK(String data_DK) {
-		this.data_DK = data_DK;
+	public void setdsDK(String dsDK) {
+		this.dsDK = dsDK;
 	}
 	public Object[] getArray()	{
 		

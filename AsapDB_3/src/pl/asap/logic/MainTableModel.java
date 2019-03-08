@@ -51,9 +51,7 @@ public class MainTableModel extends AbstractTableModel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		lista = new Lista();
 		ReadTrans readDB = new ReadTrans(lista);
 		//this.dane=adane;
@@ -188,7 +186,7 @@ public class MainTableModel extends AbstractTableModel {
 		dane=daneUpd;
 		SaveTrans st = new SaveTrans(lista);
 		st.saveRow(savedRow);
-		fireTableRowsInserted(n-1, n-1);
+		fireTableRowsInserted(n, n);
 		fireTableDataChanged();
 
 	}

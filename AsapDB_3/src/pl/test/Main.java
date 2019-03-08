@@ -22,9 +22,9 @@ public class Main {
 			//System.out.println(" main el "+el);
 		//}
 		
-		SaveTrans st = new SaveTrans(lista);
+		//SaveTrans st = new SaveTrans(lista);
 		//st.saveRow(values);
-		st.saveField("dsZZ", "07.03.2019");
+		//st.saveField("dsZZ", "07.03.2019");
 		
 		
 		

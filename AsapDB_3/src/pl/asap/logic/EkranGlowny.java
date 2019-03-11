@@ -80,9 +80,11 @@ public class EkranGlowny implements ActionListener {
 		    });
 	}
 	
-	public EkranGlowny(AbstractTableModel dataModel, DBConnect dbConnect) {
-		this.dataModel = dataModel;
+	public EkranGlowny(DBConnect dbConnect) {
+		//this.dataModel = dataModel;
 		this.dbConnect = dbConnect;
+		MainTableModel dane = new MainTableModel();
+		data = dane;
 
 		SwingUtilities.invokeLater(new Runnable() {
 		      @Override
@@ -96,8 +98,7 @@ public class EkranGlowny implements ActionListener {
 	
 	public void createGui(String tytul)	{
 		
-		MainTableModel dane = new MainTableModel();
-		data = dane;
+
 		
 		int i = data.getRowCount();
 		int j = data.getColumnCount();
@@ -113,15 +114,15 @@ public class EkranGlowny implements ActionListener {
 		}	
 		eg = new JFrame("ASap - Lista Postępowań");
 		
-		width = dane.getColumnCount()*100;
-		height=	dane.getRowCount()*12+200;	
+		width = data.getColumnCount()*100;
+		height=	data.getRowCount()*12+200;	
 		eg.setSize(width, height);
 		
-		lista = new JTable(dataModel);
+		lista = new JTable(data);
 		
 		//sortowanie i filtrowanie
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
-		sorter = new TableRowSorter<MainTableModel>(dane);
+		sorter = new TableRowSorter<MainTableModel>(data);
 		//compare(dane.getValueAt(12, 11), dane.getValueAt(5, 11));
 		sorter.setComparator(0, new CompareZZ());
 		sorter.setComparator(2, new CompareZZ());
@@ -252,6 +253,7 @@ public class EkranGlowny implements ActionListener {
 		//System.out.println(u);
 
 		if (u.equals(start[3]))	{
+			System.out.println(dbConnect.getProcess().toString()+"yyyy");
 			dbConnect.getProcess().destroy();
 			System.exit(0);
 		}

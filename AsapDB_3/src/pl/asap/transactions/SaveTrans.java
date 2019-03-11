@@ -24,7 +24,7 @@ public class SaveTrans extends TransBlank {
 		//System.out.println(methodName +" *methodName " + String.class);
 		try {
 			method = bean.getClass().getMethod(methodName, String.class);
-			System.out.println(method.toString() +" * ");
+			//System.out.println(method.toString() +" * ");
 		} catch (NoSuchMethodException | SecurityException e) {
 		}
 		try {
@@ -33,7 +33,7 @@ public class SaveTrans extends TransBlank {
 		}
 	}
 	public void saveField(String fieldName, String value)	{
-		System.out.println(value);
+		//System.out.println(value);
 		fieldLogic(fieldName, value);
 		session.beginTransaction();
 		session.save(bean);
@@ -44,7 +44,7 @@ public class SaveTrans extends TransBlank {
 		
 		int i=0;
 		for (Object el: array)	{
-			System.out.println(values[i].toString() +" - "+i+" -- "+ el);
+			//System.out.println(values[i].toString() +" - "+i+" -- "+ el);
 			fieldLogic((String) el, values[i].toString());
 			
 			i++;

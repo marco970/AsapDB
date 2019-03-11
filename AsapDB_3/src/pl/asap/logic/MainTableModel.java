@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+import pl.asap.DB.DBConnect;
 import pl.asap.entity.Lista;
 import pl.asap.transactions.ReadTrans;
 import pl.asap.transactions.SaveTrans;
@@ -53,6 +54,7 @@ public class MainTableModel extends AbstractTableModel {
 		}
 
 		lista = new Lista();
+		DBConnect dbConnect = new DBConnect();
 		ReadTrans readDB = new ReadTrans(lista);
 		//this.dane=adane;
 		this.dane=readDB.getMatrix();

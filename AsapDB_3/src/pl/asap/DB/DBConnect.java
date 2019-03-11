@@ -84,6 +84,7 @@ public DBConnect()        {
 	});
 	}
 	public Process getProcess()	{
+		System.out.println(proc.toString()+"zzz");
 		return proc;
 	}
 	public boolean processCheck(String processName)	{
@@ -95,7 +96,7 @@ public DBConnect()        {
 		Process p = null;
 		try {
 			p = Runtime.getRuntime().exec(tasksCmd);
-			//System.out.println(p.toString()+"xxxx");
+			System.out.println(p.toString()+"xxxx");
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}

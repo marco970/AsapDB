@@ -84,6 +84,10 @@ public class MainTableModel extends AbstractTableModel {
 	}
 	//----------metody--
 
+	public Integer getId(int rowNr)	{
+		return (Integer) ids[rowNr];
+	}
+	
 	public String getPath()	{
 		return current;
 	}
@@ -211,6 +215,7 @@ public class MainTableModel extends AbstractTableModel {
 
 	}
 	public void cellUpdate(Object value, int rowNr, int kolNr)	{ //--zapis do DB
+
 		dane[rowNr][kolNr] = value;
 		fireTableCellUpdated(rowNr, kolNr);
 	}

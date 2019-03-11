@@ -141,31 +141,19 @@ public class Lista {
 		this.dsDK = dsDK;
 	}
 	public Object[] getArray()	{
-		
+		//zwraca nazwy pól beana
 		Class c = getClass();
 		Field[] fields = c.getDeclaredFields();
-
 		int length = fields.length;
 		Object[] array = new Object[length-1];
 		for (int i =0; i<= length -2; i++)	{
 			try {
-				//System.out.println(" lista el "+fields[i].toString());
 				String[] a = null;
 				if (i+1<= length -1) {
 					a = fields[i + 1].toString().split("[.]{1}");
 					int k = a.length;
 					array[i] = a[k-1];
-				}
-
-				//System.out.println(" lista el "+ k +" -- "+a[k-1]);
-				//String[] b = a[k-1].split("[.]{1}");
-				
-				//int l = b.length;
-				//System.out.println(" lista l "+ l);
-
-				//System.out.println(" lista el "+a[k]+" * "+k);
-				//System.out.println(" lista el "+array[i].getClass());
-				//System.out.println(" lista el "+array[i]);
+			}
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			}
@@ -174,7 +162,7 @@ public class Lista {
 	}
 	
 public Object[] getRow()	{
-		
+		//zwraca wartości wiersza
 		Class c = getClass();
 		Field[] fields = c.getDeclaredFields();
 
@@ -184,10 +172,8 @@ public Object[] getRow()	{
 			try {
 				array[i] = fields[i].get(this);
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

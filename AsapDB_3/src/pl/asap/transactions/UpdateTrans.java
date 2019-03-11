@@ -7,42 +7,42 @@ package pl.asap.transactions;
 
 import org.hibernate.query.Query;
 
+import pl.asap.entity.Lista;
+
 /**
  *
  * @author marcin.kuciak
  */
 public class UpdateTrans extends TransBlank {
     
-    private final String newValue;
-    private String fieldName;
-
-    public UpdateTrans(Object bean, String fieldName, String newValue, int id) {
-        super(bean);
-        this.newValue = newValue;
-        //String val = fieldName;
-        //String PZ = newValue;
-        //String ZZ = "ZZ/PLI0003457";
-        //int id = 9;
-        String str = bean.toString();
+    public UpdateTrans(Object bean) {
+        super(bean);      
+    }
+    
+    public void upadateCell(Object field, Object newValue, int id)	{
+    	
+    	session.beginTransaction();
+    	
+    	
+    	String str = bean.toString();
         int i = str.indexOf("@");
-        //System.out.println("***"+str.substring(0, i));
+    	String update = "update "+str.substring(0, i)+" set "+ field+"=:"+field+ " where id_postepowanie=:id";
+    	
         
-        String update = "update "+str.substring(0, i)+" set "+ fieldName+"=:"+fieldName+ " where id_postepowanie=:id";
-        System.out.println("**"+update);
-
-        //String update = "update Lista set PZ=:PZ where ZZ=:ZZ";
-        
-        session.beginTransaction();
         Query<?> query = session.createQuery(update);
         query.setParameter("id", id);
-        query.setParameter(fieldName, newValue);
+        query.setParameter((String) field, newValue.toString());
         query.executeUpdate();
         session.getTransaction().commit();
         factory.close();
-        
     }
     
-
-    
-    
+    public void updateRow(Object[] savedRow, int id)	{
+    	Object[] a = ((Lista) bean).getArray();
+    	for (int i = 0; i<=a.length-1; i++)	{
+    		if (savedRow[i]==null) savedRow[i] = "a";
+    		System.out.println(i+" * "+a[i]+" * "+savedRow[i]);
+    		//upadateCell(a[i], savedRow[i], id);
+    	}
+    }
 }

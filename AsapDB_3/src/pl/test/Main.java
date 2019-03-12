@@ -13,16 +13,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String[] values = {"ZZ/CPO0003498"," "," "," ","aktywne","przemiot zak"," "," "," ","11.02.2019","11.03.2019"," "," "," "};
+		String[] values = {"ZZ/CPO0003498","PZ/0000002345"," "," ","aktywne","przemiot zak","Durex"," "," ","11.02.2019","11.03.2019"," "," "," "};
 		//System.out.println(values.length);
 		
 		DBConnect dbConnect = new DBConnect();
-		Lista lista = new Lista();
-		UpdateTrans ut = new UpdateTrans(lista);
+		//Lista lista = new Lista();
+		//UpdateTrans ut = new UpdateTrans(lista);
 		//ut.upadateCell("PZ", "PZ/0000008767", 10);
 		//ut.upadateCell("WP", "WP/PLI0008767", 10);
-		ut.upadateCell("przedmiot_zakupu", "przedmiot", 10);
-		ut.updateRow(values, 11);
+		//ut.upadateCell("przedmiot_zakupu", "przedmiot", 16);
+		//ut.updateRow(values, 16);
 		//Object[] pola = lista.getArray();
 		//for (Object el: pola)	{
 			//System.out.println(" main el "+el);

@@ -5,15 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,12 +16,9 @@ import javax.swing.KeyStroke;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import pl.asap.DB.DBConnect;
-import pl.asap.entity.Lista;
-import pl.asap.transactions.ReadTrans;
 
 	
 public class EkranGlowny implements ActionListener {
@@ -36,7 +28,6 @@ public class EkranGlowny implements ActionListener {
 	private String tytul;
 	private JMenuBar menuBar;
 	private MainTableModel data;
-	private JPopupMenu popupMenu;
 	private JTable lista;
 	JMenu raport=null;  
 	//private ErrMessage errMessage;
@@ -68,7 +59,7 @@ public class EkranGlowny implements ActionListener {
 	    }
 	}
 	
-	public EkranGlowny(AbstractTableModel dataModel)	{
+	public EkranGlowny(AbstractTableModel dataModel)	{ //do wywalenia
 		
 		this.dataModel = dataModel;
 
@@ -81,7 +72,6 @@ public class EkranGlowny implements ActionListener {
 	}
 	
 	public EkranGlowny(DBConnect dbConnect) {
-		//this.dataModel = dataModel;
 		this.dbConnect = dbConnect;
 		MainTableModel dane = new MainTableModel();
 		data = dane;
@@ -92,14 +82,10 @@ public class EkranGlowny implements ActionListener {
 		        createGui(tytul);
 		      }
 		    });
-		
-	
 	}
 	
 	public void createGui(String tytul)	{
-		
 
-		
 		int i = data.getRowCount();
 		int j = data.getColumnCount();
 		
@@ -123,7 +109,6 @@ public class EkranGlowny implements ActionListener {
 		//sortowanie i filtrowanie
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
 		sorter = new TableRowSorter<MainTableModel>(data);
-		//compare(dane.getValueAt(12, 11), dane.getValueAt(5, 11));
 		sorter.setComparator(0, new CompareZZ());
 		sorter.setComparator(2, new CompareZZ());
 		sorter.setComparator(3, new CompareZZ());
@@ -151,13 +136,6 @@ public class EkranGlowny implements ActionListener {
 		
 		menuBar = new JMenuBar();
 		
-		/**
-		 * To poniżej to jest do podmenu, żeby wygenerować raport. 
-		 * Moje metody doMassAddMenu niestety nie przewidują podmenu i to podmenu zostało zrobione chujowo
-		 * metoda poowinna być bardziej uniwersalna, ta jest zrobiona pod konkretną pozycję
-		 * To powinno być poprawione w kolejnych wersjach.
-		 */
-		
 		doMassAddMenu(menuBar, start);
 		doMassAddMenu(menuBar, sort);
 		//doMassAddMenu(menuBar, toDo);
@@ -176,9 +154,7 @@ public class EkranGlowny implements ActionListener {
 
 		lista.setComponentPopupMenu(pc); //tu wrzucamy dynamiczny obiekt
 
-		//eg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		eg.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		//eg.addActionListner(new CloseListener());
 		eg.addWindowListener(new WindowAdapter() {
 	        @Override
 	        public void windowClosing(WindowEvent event) {
@@ -191,38 +167,33 @@ public class EkranGlowny implements ActionListener {
 	        }
 	    });
 		eg.setVisible(true);
-
 	}
 	public void setPopupContent(String[] s)	{		//do wywalenia
 		popupStr = s;
 	}
 	public void doMassAddMenu(JPopupMenu popup, String...args)	{ //metoda z Popup do wywalenia z tej klasy
-		//JMenu menu = new JMenu(args[0]);
-		//popup.add(menu);
 		for (int i =0; i<=args.length-1; i++)	{
 			JMenuItem menuItem = mi(args[i]);
-			
 			popup.add(menuItem);
-			//menuItem.addActionListener(this);
 		}
 	}
+	
 	public void doMassAddMenu(JMenuBar mb, String...args)	{
 		JMenu menu = new JMenu(args[0]);
 		mb.add(menu);
 		for (int i =1; i<=args.length-1; i++)	{
-
 				JMenuItem menuItem = mi(args[i]);
 				menu.add(menuItem);
-	
 		}
 	}
+	
 	public JMenuItem mi(String str)	{
-		//Color col = colors.get(str.substring(1));
 		JMenuItem mi = new JMenuItem(str);
 		mi.addActionListener(this);	
 		mi.setActionCommand(str);
 		return mi;
 	}
+	
 	public JMenuItem mi(String str, String acc, int mnem)	{
 		JMenuItem mi = new JMenuItem(str);
 		mi.addActionListener(this);	
@@ -249,31 +220,25 @@ public class EkranGlowny implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		String u = e.getActionCommand();
-		
-		//System.out.println(u);
 
 		if (u.equals(start[3]))	{
 			System.out.println(dbConnect.getProcess().toString()+"yyyy");
 			dbConnect.getProcess().destroy();
 			System.exit(0);
 		}
-		//ErrMessageShow errMS = new ErrMessageShow(data); 		//do wywalenia?
+
 		if (u.equals(start[1]))	{
 			new NewForm(data.getRowCount()+1, data);
 		}
 		if (u.equals(start[2])){
-			//System.out.println(u+"--"+Arrays.asList(nazwaMies).indexOf(u)+"--"+q.toString());
 			//new RaportForm(data);
-			
 		}
+		
 		if (u.equals(sort[1]))	{
-			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
-			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return !("aktywne".equals(status));
-			        //return true;
 			      }
 			    };
 				sorter.setRowFilter(filter);
@@ -281,27 +246,20 @@ public class EkranGlowny implements ActionListener {
 
 		}
 		if (u.equals(sort[2]))	{
-			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
-			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("aktywne".equals(status));
-			        //return true;
 			      }
 			    };
 				sorter.setRowFilter(filter);
 				lista.setRowSorter(sorter);
-
 		}
 		if (u.equals(sort[3]))	{
-			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
-			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("zawieszone".equals(status));
-			        //return true;
 			      }
 			    };
 				sorter.setRowFilter(filter);
@@ -309,27 +267,20 @@ public class EkranGlowny implements ActionListener {
 
 		}
 		if (u.equals(sort[4]))	{
-			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
-			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
 			        return ("zakonczone".equals(status));
-			        //return true;
 			      }
 			    };
 				sorter.setRowFilter(filter);
 				lista.setRowSorter(sorter);
-
 		}
 		if (u.equals(sort[5]))	{
-			//System.out.println("sort teraz "+u);
 		    filter = new RowFilter<Object, Object>() {
 			      public boolean include(Entry<?, ?> entry) {
-			        String status = (String) entry.getValue(4);
-			        //System.out.println("include()= " +status+ ("".equals(status) || status == null));
+			        entry.getValue(4);
 			        return (true);
-			        //return true;
 			      }
 			    };
 				sorter.setRowFilter(filter);
@@ -380,7 +331,4 @@ public class EkranGlowny implements ActionListener {
 		*/
 		
 	}
-
-
-
 }

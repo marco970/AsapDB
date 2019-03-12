@@ -318,7 +318,6 @@ public class OpForm2 implements ActionListener, FocusListener {
 				} else {
 					savedRow[i] = model.getValueAt(rowNr, i);
 				}
-				//System.out.println(i+" ---- "+savedRow[i]+" "+model.getValueAt(rowNr, i) );
 
 			}
 			savedRow = DsIterator(dateString, savedRow, liczbaWierszy, liczbaDs, rowNr);
@@ -327,10 +326,9 @@ public class OpForm2 implements ActionListener, FocusListener {
 			FolderCreator folder = new FolderCreator();
 			String numerZZ = model.getValueAt(rowNr, 0).toString().substring(6);
 			String myPath = "";
-			//System.out.println();
-			//System.out.println("Zmiana Statusu z: " + model.getValueAt(rowNr, 4) + " na: " + savedRow[4]);
+
 			if (savedRow[4].equals("zakonczone") && !model.getValueAt(rowNr, 4).equals("zakonczone")) {
-				//System.out.println("Zmieniamy lokalizację folderu z " + folder.getAktywne());
+
 				myPath = folder.getDefaultPath() + folder.getAktywne();
 				findMoveFolder(numerZZ, myPath, true);
 			} 

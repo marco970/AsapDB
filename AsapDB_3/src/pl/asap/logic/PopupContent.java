@@ -81,7 +81,7 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 		if (u.equals("modyfikacja"))	{
 			int selectedRow = lista.getSelectedRow();
 			int realSelectedRow = lista.convertRowIndexToModel(selectedRow);
-			//new OpForm2("Edycja postępowania", realSelectedRow, data);
+			new OpForm2("Edycja postępowania", realSelectedRow, data);
 		}
 		if (u.equals("zakończ postępowanie"))	{
 			int selectedRow = lista.getSelectedRow();

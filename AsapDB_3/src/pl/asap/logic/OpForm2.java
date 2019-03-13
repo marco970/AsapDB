@@ -224,7 +224,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 				b[i]=a5;
 				if (rowNr<model.getRowCount())	{
 					if (model.getValueAt(rowNr, i)!=null) 	((JTextComponent) a[i]).setText(model.getValueAt(rowNr, i).toString());
-					else										((JTextComponent) a[i]).setText("");
+					else										((JTextComponent) a[i]).setText(" ");
 				}
 				
 				((Component) a[i]).setName(model.getColumnName(i));

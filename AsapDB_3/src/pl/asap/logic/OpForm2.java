@@ -131,6 +131,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		for (int i = 0; i<=colCount-1-model.getNumberDs(); i++) {
 			nazwaPola[i] = new JLabel(model.getColumnName(i));
 			panel.add(nazwaPola[i], targetNazwaPola[i]);
+			//System.out.println("ellou "+i);
 			if (i==4)	{
 				String[] strA5 = {"aktywne","zakonczone","zawieszone"}; //do modelu
 				String defaultStatus = (String) model.getValueAt(rowNr, i);
@@ -167,7 +168,8 @@ public class OpForm2 implements ActionListener, FocusListener {
 				listaComp.add(a5);
 			}
 			else if (i>0 && i<=3)	{
-	
+				//System.out.println("hej "+ "i-1 = "+(i-1)+" poprzednik "+model.doesElExists(rowNr, i-1)+" wartość "+model.getValueAt(rowNr, i-1));
+				//System.out.println("aab "+(model.getValueAt(rowNr, i-1)).toString().matches("[ ]{2,}"));
 				if (model.doesElExists(rowNr, i))	{
 					
 					JLabel a5 = new JLabel((String) model.getValueAt(rowNr, i));
@@ -179,7 +181,9 @@ public class OpForm2 implements ActionListener, FocusListener {
 				}
 				else	{
 					JTextField a5 = new JTextField(13);
+					a5.setCaretPosition(0);
 					if (i>1)	{
+						//System.out.println("i = "+i+" nie istnieje poprz "+!model.doesElExists(rowNr, i-1));
 						if (!model.doesElExists(rowNr, i-1))	a5.setEnabled(false);
 						
 					}

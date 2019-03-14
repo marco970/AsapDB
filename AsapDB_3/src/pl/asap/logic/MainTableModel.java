@@ -13,6 +13,7 @@ import pl.asap.DB.DBConnect;
 import pl.asap.entity.Lista;
 import pl.asap.transactions.ReadTrans;
 import pl.asap.transactions.SaveTrans;
+import pl.asap.transactions.UpdateTrans;
 
 public class MainTableModel extends AbstractTableModel {
 	
@@ -112,8 +113,9 @@ public class MainTableModel extends AbstractTableModel {
 	}
 	public boolean doesElExists(int i, int j)	{
 		boolean a = true;
+		//(getValueAt(i,j)).toString().matches("[ ]{2,}")
 		if (i <= getRowCount())	{
-			if ((null==getValueAt(i,j))||"".equals(getValueAt(i,j))) a = false;
+			if ((getValueAt(i,j)==null)||"".equals(getValueAt(i,j))||" ".equals(getValueAt(i,j))) a = false;
 			else a = true;
 		}
 		else a = false;
@@ -212,6 +214,8 @@ public class MainTableModel extends AbstractTableModel {
 		dane=daneUpd;
 		fireTableRowsUpdated(rowNr, rowNr);
 		fireTableDataChanged();	
+		UpdateTrans ut = new UpdateTrans(lista);
+		ut.updateRow(savedRow, getId(rowNr));
 
 	}
 	public void cellUpdate(Object value, int rowNr, int kolNr)	{ //--zapis do DB

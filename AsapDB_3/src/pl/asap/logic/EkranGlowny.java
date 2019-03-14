@@ -222,7 +222,7 @@ public class EkranGlowny implements ActionListener {
 		String u = e.getActionCommand();
 
 		if (u.equals(start[3]))	{
-			System.out.println(dbConnect.getProcess().toString()+"yyyy");
+			//System.out.println(dbConnect.getProcess().toString()+"yyyy");
 			dbConnect.getProcess().destroy();
 			System.exit(0);
 		}

@@ -142,9 +142,9 @@ public class SingleFieldValidator {
 		}
 		public void checkFormat(String field)	{	//dorobić dla PZ
 			if (field.length()>=13)	{
-				String fstPart = field.substring(0, 3);
-				String sndPart = field.substring(3, 6);
-				String trdPart = field.substring(6,13);
+				String fstPart = field.trim().substring(0, 3);
+				String sndPart = field.trim().substring(3, 6);
+				String trdPart = field.trim().substring(6,13);
 				spolka="";
 				if (fieldName.equals("ZZ"))	{
 					if (field.length()>6)	spolka=field.substring(3, 6);
@@ -178,7 +178,7 @@ public class SingleFieldValidator {
 							valOrg(false,"nieprawidłowy format numeru_4");
 							//System.out.println("I am here "+ fieldName);
 						}
-						//System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
+						System.out.println("fieldName: "+fieldName+" fstPart: "+fstPart+" sndPart: "+sndPart+" spolka "+spolka);
 					}
 					if (fieldName.equals("DK"))	{
 						System.out.println(sndPart +" fN-> "+fieldName );

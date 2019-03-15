@@ -131,7 +131,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 		for (int i = 0; i<=colCount-1-model.getNumberDs(); i++) {
 			nazwaPola[i] = new JLabel(model.getColumnName(i));
 			panel.add(nazwaPola[i], targetNazwaPola[i]);
-			//System.out.println("ellou "+i);
+			System.out.println("ellou "+i);
 			if (i==4)	{
 				String[] strA5 = {"aktywne","zakonczone","zawieszone"}; //do modelu
 				String defaultStatus = (String) model.getValueAt(rowNr, i);

@@ -39,6 +39,9 @@ public class Lista {
 	@Column(name="Nazwa")
 	private String Nazwa;
 	
+	@Column(name="Tryb_postepowania")
+	private String Tryb_postepowania;
+
 	@Column(name="Spolka")
 	private String Spolka;
 	
@@ -103,6 +106,12 @@ public class Lista {
 	}
 	public void setDostawca(String dostawca) {
 		Dostawca = dostawca;
+	}
+	public String getTryb_postepowania() {
+		return Tryb_postepowania;
+	}
+	public void setTryb_postepowania(String tryb_postepowania) {
+		Tryb_postepowania = tryb_postepowania;
 	}
 	public String getNazwa() {
 		return Nazwa;

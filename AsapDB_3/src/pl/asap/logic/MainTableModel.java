@@ -61,10 +61,10 @@ public class MainTableModel extends AbstractTableModel {
 		this.dane=readDB.getMatrix();
 		this.ids = readDB.getIDs();
 		
-		/*
-		System.out.println("wiersze n: "+dane.length);
-		System.out.println("kolumny m: "+dane[0].length);
-		System.out.println("kolumny m': "+nazwyKolumn.length);
+		
+		//System.out.println("wiersze n: "+dane.length);
+		//System.out.println("kolumny m: "+dane[0].length);
+		//System.out.println("kolumny m': "+nazwyKolumn.length);
 		
 		int i = dane.length;
 		int j = dane[0].length;
@@ -75,11 +75,11 @@ public class MainTableModel extends AbstractTableModel {
 				if (n==0)	{							
 					//System.out.print("ids-"+ids[m]+"("+m+"|"+n+")  ");
 				}
-					System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
+					//System.out.print(dane[m][n]+"-("+m+"|"+n+") ");
 			}
-			System.out.println();
+			//System.out.println();
 		}	
-		*/
+		
 	
 				
 	}
@@ -203,13 +203,17 @@ public class MainTableModel extends AbstractTableModel {
 		for (int i = 0; i<=getRowCount()-1; i++)	{
 			rowList.add(dane[i]);
 		}
-		//System.out.println("recordUpdated rowNr: "+rowNr + " ilość wierszy :"+getRowCount());
+		System.out.println("recordUpdated rowNr: "+rowNr + " ilość wierszy :"+getRowCount());
 		rowList.set(rowNr, savedRow);
 		Object[][] daneUpd = new Object[rowList.size()][nazwyKolumn.length];
 		int j = 0;
 		for (Object[] el: rowList)	{
 			daneUpd[j]=el;
+			
 			j++;
+		}
+		for (Object el: savedRow)	{
+			System.out.print(el+", ");
 		}
 		dane=daneUpd;
 		fireTableRowsUpdated(rowNr, rowNr);

@@ -86,7 +86,7 @@ public class MainTableModel extends AbstractTableModel {
 	//----------metody--
 
 	public Integer getId(int rowNr)	{
-		return (Integer) ids[rowNr];
+		return (Integer) ids[rowNr-1];
 	}
 	
 	public String getPath()	{

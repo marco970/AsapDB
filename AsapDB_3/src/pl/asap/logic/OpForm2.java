@@ -270,7 +270,7 @@ public class OpForm2 implements ActionListener, FocusListener {
 
 	public Object[] DsIterator(String dateString, Object[] savedRow, int liczbaWierszy, int liczbaDs, int currRow)	{
 		for (int i = 0; i <= liczbaDs-1; i++)	{
-			if (!"".equals(savedRow[i])&&!model.doesElExists(currRow, i))	{
+			if ((!"".equals(savedRow[i])||(!" ".equals(savedRow[i]))&&!model.doesElExists(currRow, i)))	{
 				savedRow[colCount-liczbaDs+i]=dateString;
 			}
 			else	{

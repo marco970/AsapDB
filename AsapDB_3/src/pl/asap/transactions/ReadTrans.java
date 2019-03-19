@@ -24,11 +24,17 @@ public class ReadTrans extends TransBlank{
 		
 		session.getTransaction().commit();
 		factory.close();
-		
-		int j = result.get(0).getLength()-1;	//kolumny -> wiersze
+		//System.out.println("is relult empty? "+ result.isEmpty());
+		int j;
+		if (result.isEmpty()) {
+			j = 0;
+		}
+		else {
+			j = result.get(0).getLength()-1;	//kolumny -> wiersze
+		}
 		int i = result.size();	//wiersze -> kolumny
-		System.out.println("kolumny -> wiersze(ile result na liście) i: "+i);
-		System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
+		//System.out.println("kolumny -> wiersze(ile result na liście) i: "+i);
+		//System.out.println("wiersze -> kolumny(wielkość jednego result) j: "+j);
 		
 		dane = new Object[i][j]; //7,14
 		ids = new Object[i];	//14
@@ -42,7 +48,7 @@ public class ReadTrans extends TransBlank{
 				if (l==0 )	{
 					//System.out.println(k+"|"+l); 
 					ids[k]= el;					
-					System.out.println(ids[k]+"*("+k+"|"+l+")");
+					//System.out.println(ids[k]+"*("+k+"|"+l+")");
 				}
 				if (l>0)	{
 				//System.out.println(k+"|"+l);

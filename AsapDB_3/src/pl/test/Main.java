@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String[] values = {"ZZ/CPO0003498","PZ/0000002345"," "," ","aktywne","przemiot zak","Durex"," "," ","11.02.2019","11.03.2019"," "," "," "};
+		//String[] values = {"ZZ/CPO0003498","PZ/0000002345"," "," ","aktywne","przemiot zak","Durex"," "," ","11.02.2019","11.03.2019"," "," "," "};
 		//System.out.println(values.length);
 		
 		DBConnect dbConnect = new DBConnect();

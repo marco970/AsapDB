@@ -21,29 +21,11 @@ public class MainTableModel extends AbstractTableModel {
 	private static String[] nazwyKolumn = {"ZZ", "PZ", "WP", "DK", "Status", 
 			"Przemiot Zakupu", "Dostawca", "Nazwa", "Tryb postępowania", "Spółka", 
 			"dsZZ", "dsPZ", "dsWP", "dsDK" };
-
-
-	private String current = "Current4.txt";
-	
+	private String current = "Current4.txt";	
 	private Object[][] dane = null;
 	private Object[][] adane = null;
 	private Object[] ids;
 	private Lista lista; //to jest klasa bean, jakbym zapomniał
-	
-			//tu powinien być odczyt z bazy
-
-	/*
-	 * Walidacja
-	 */
-	//private boolean[] notNull = 
-	//private String[] ZZ = {"notNull"};
-
-	//private String current = "F:/aSapData/Current3.txt";
-	//private String current = "C:/Users/Lappo/git/AsapJava/aSapData/Current3.txt";
-	//private String current = "Current4.txt";
-	//private String current = "C:/Users/marcin.kuciak/Documents/workIT_projects/doAsap/aSapData/Current3.txt";
-	
-	//private Object[][] dane = null;
 	
 	public MainTableModel() 	{
 		
@@ -60,15 +42,17 @@ public class MainTableModel extends AbstractTableModel {
 		//this.dane=adane;
 		this.dane=readDB.getMatrix();
 		this.ids = readDB.getIDs();
-		
+		System.out.print("ids "+ ids.length + " _ "+ dane.length);
 		
 		//System.out.println("wiersze n: "+dane.length);
 		//System.out.println("kolumny m: "+dane[0].length);
 		//System.out.println("kolumny m': "+nazwyKolumn.length);
 		
 		int i = dane.length;
-		int j = dane[0].length;
+		int j = nazwyKolumn.length;
 		
+		System.out.print("ids "+ ids.length + " _ "+ j);
+
 		for(int m = 0; m<=i-1; m++)	{
 					
 			for (int n =0; n<=j-1; n++)	{
@@ -86,7 +70,15 @@ public class MainTableModel extends AbstractTableModel {
 	//----------metody--
 
 	public Integer getId(int rowNr)	{
-		return (Integer) ids[rowNr-1];
+		int id;
+		Object[] cids = new ReadTrans(lista).getIDs();
+		if (rowNr>0)	{
+			id = (Integer) cids[rowNr-1];
+		}else
+			id = 0;
+		System.out.println("row "+ rowNr + " id "+ id);
+		System.out.println("ids length " + (Integer) cids.length);
+		return id;
 	}
 	
 	public String getPath()	{
@@ -132,7 +124,8 @@ public class MainTableModel extends AbstractTableModel {
 	}
 	@Override
 	public int getColumnCount() {
-		return dane[0].length;
+		return nazwyKolumn.length;
+		
 	}
 
 	@Override
@@ -226,5 +219,10 @@ public class MainTableModel extends AbstractTableModel {
 
 		dane[rowNr][kolNr] = value;
 		fireTableCellUpdated(rowNr, kolNr);
+		UpdateTrans ut = new UpdateTrans(lista);
+		String field = getColumnName(kolNr);
+		int id = getId(rowNr);
+		ut.upadateCell(field, value, id);
+		
 	}
 }

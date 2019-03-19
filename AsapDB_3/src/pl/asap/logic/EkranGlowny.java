@@ -109,13 +109,16 @@ public class EkranGlowny implements ActionListener {
 		//sortowanie i filtrowanie
 		//lista.setAutoCreateRowSorter(true);			//sortowanie najprościej
 		sorter = new TableRowSorter<MainTableModel>(data);
-		sorter.setComparator(0, new CompareZZ());
-		sorter.setComparator(2, new CompareZZ());
-		sorter.setComparator(3, new CompareZZ());
-		sorter.setComparator(10, new Compare());
-		sorter.setComparator(11, new Compare());
-		sorter.setComparator(12, new Compare());
-		sorter.setComparator(13, new Compare());
+		
+		
+			sorter.setComparator(0, new CompareZZ());
+			sorter.setComparator(2, new CompareZZ());
+			sorter.setComparator(3, new CompareZZ());
+			sorter.setComparator(10, new Compare());
+			sorter.setComparator(11, new Compare());
+			sorter.setComparator(12, new Compare());
+			sorter.setComparator(13, new Compare());
+		
 		lista.setRowSorter(sorter);
 
 	    filter = new RowFilter<Object, Object>() {

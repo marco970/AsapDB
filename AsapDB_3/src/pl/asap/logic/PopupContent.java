@@ -102,7 +102,7 @@ public class PopupContent extends JPopupMenu implements PropertyChangeListener, 
 		if (u.equals("zmień daty"))	{
 			//System.out.println("Zmiana dat");
 			//new DataChangeForm(data, lista.getSelectedRow());
-			//new DateChangeForm2(data, lista.convertRowIndexToModel(lista.getSelectedRow()));
+			new DateChangeForm2(data, lista.convertRowIndexToModel(lista.getSelectedRow()));
 		}
 		if (u.equals("zawieś postepowanie"))	{
 			int selectedRow = lista.getSelectedRow();

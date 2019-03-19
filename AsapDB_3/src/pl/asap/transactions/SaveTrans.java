@@ -18,7 +18,7 @@ public class SaveTrans extends TransBlank {
 	}
 	public void fieldLogic(String fieldName, String value)	{
 		String methodName = "set"+fieldName;
-		if(value==null || "".equals(value)) value = " ";
+		if(value==null || "".equals(value)) value = "";
 		//System.out.println(value +" * ");
 		//System.out.println(bean.getClass().toString() +" ** ");
 		//System.out.println(methodName +" *methodName " + String.class);

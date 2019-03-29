@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -29,7 +31,8 @@ public class EkranGlowny implements ActionListener {
 	private JMenuBar menuBar;
 	private MainTableModel data;
 	private JTable lista;
-	JMenu raport=null;  
+	private JMenu raport=null;  
+	private ImageIcon img = new ImageIcon("sleepy-worker-at-work.png");
 	//private ErrMessage errMessage;
 
 	//do menu - string pierwszy nazwa menu, kolejne - nazwy MenuItemów
@@ -89,6 +92,8 @@ public class EkranGlowny implements ActionListener {
 		int i = data.getRowCount();
 		int j = data.getColumnCount();
 		
+		
+		
 		for(int m = 0; m<=i-1; m++)	{
 			for (int n =0; n<=j-1; n++)	{
 				if (n==0)	{	
@@ -103,6 +108,7 @@ public class EkranGlowny implements ActionListener {
 		width = data.getColumnCount()*100;
 		height=	data.getRowCount()*12+200;	
 		eg.setSize(width, height);
+		eg.setIconImage(img.getImage());
 		
 		lista = new JTable(data);
 		
@@ -122,6 +128,7 @@ public class EkranGlowny implements ActionListener {
 		lista.setRowSorter(sorter);
 
 	    filter = new RowFilter<Object, Object>() {
+                      @Override
 		      public boolean include(Entry<?, ?> entry) {
 		        String status = (String) entry.getValue(4);
 		        return !("".equals(status) || status == null);
@@ -250,6 +257,7 @@ public class EkranGlowny implements ActionListener {
 		}
 		if (u.equals(sort[2]))	{
 		    filter = new RowFilter<Object, Object>() {
+                              @Override
 			      public boolean include(Entry<?, ?> entry) {
 			        String status = (String) entry.getValue(4);
 			        return ("aktywne".equals(status));

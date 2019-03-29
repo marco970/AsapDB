@@ -1,13 +1,7 @@
 package pl.test;
 
 import pl.asap.DB.DBConnect;
-import pl.asap.entity.Lista;
-import pl.asap.logic.DataModel;
 import pl.asap.logic.EkranGlowny;
-import pl.asap.logic.MainTableModel;
-import pl.asap.transactions.ReadTrans;
-import pl.asap.transactions.SaveTrans;
-import pl.asap.transactions.UpdateTrans;
 
 public class Main {
 
@@ -16,7 +10,7 @@ public class Main {
 		//String[] values = {"ZZ/CPO0003498","PZ/0000002345"," "," ","aktywne","przemiot zak","Durex"," "," ","11.02.2019","11.03.2019"," "," "," "};
 		//System.out.println(values.length);
 		
-		DBConnect dbConnect = new DBConnect();
+		DBConnect dbConnect = new DBConnect();                        
 		//Lista lista = new Lista();
 		//UpdateTrans ut = new UpdateTrans(lista);
 		//ut.upadateCell("PZ", "PZ/0000008767", 10);
